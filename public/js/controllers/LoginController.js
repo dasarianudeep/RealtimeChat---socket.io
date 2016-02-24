@@ -17,7 +17,6 @@
             {
 
                 sessionStorage.setItem('user', JSON.stringify(authenticatedUser));
-                console.log(JSON.parse(sessionStorage.getItem('user')));
                 $location.path('/chatapp');
 
             }

@@ -76,7 +76,7 @@
 
         function getAllChatUsers(loggedUser){
 
-           console.log('in user service');
+
             var chatusers = userService.users.filter(function(user){
 
                 return user.username !== loggedUser;
