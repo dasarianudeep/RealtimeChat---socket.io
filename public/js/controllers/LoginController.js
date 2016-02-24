@@ -3,9 +3,9 @@
  */
 (function(){
     angular.module('socketapp')
-        .controller('LoginController', ['$location','UserService',LoginController]);
+        .controller('LoginController', ['$rootScope','$location','UserService',LoginController]);
 
-    function LoginController($location,UserService){
+    function LoginController($rootScope,$location,UserService){
 
         var vm = this;
         vm.isValidUser = true;
@@ -15,6 +15,8 @@
             var authenticatedUser = UserService.authenticateUser(vm.username, vm.passwd);
             if(authenticatedUser)
             {
+                //$rootScope.loggedUsername = authenticatedUser.username;
+                //angular.module('socketapp').value('session_user', authenticatedUser.username);
                 sessionStorage.setItem('user', JSON.stringify(authenticatedUser));
                 console.log(JSON.parse(sessionStorage.getItem('user')));
                 $location.path('/chatapp');
