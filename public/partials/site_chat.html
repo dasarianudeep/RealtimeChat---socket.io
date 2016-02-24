@@ -15,10 +15,10 @@
                         <i class="fa fa-user fa-2x"></i>
                     </a>
                 </div>
-                <div class="media-body">
-                    <h4 class="media-heading"><strong><span ng-bind="user.chatname"></span></strong></h4>
+                <div class="media-body" >
+                    <h4 class="media-heading"><strong><span ng-bind="user.chatname"></span></strong>&nbsp; <span class={{user.id}} style="display:none"><small>is typing ...</small></span></h4>
                     <p class="status"><span id={{user.id}} class="label label-default">OFFLINE</span></p>
-                    <p>{{user.isAvailable}}</p>
+                    <!--<p>{{user.isAvailable}}</p>-->
                     <!--<p ng-switch = "user.isAvailable">-->
                         <!--<span ng-switch-when = "true"><span class="label label-success">ONLINE</span></span>-->
                         <!--<span ng-switch-when = "false"><span class="label label-default">OFFLINE</span></span>-->
@@ -38,7 +38,7 @@
         </ul>
         <div class="input-group chat-input">
 
-            <input type="text" id="chat_input" class="form-control" ng-model="chatCtrl.message" placeholder="Type Message"/>
+            <input type="text" id="chat_input" class="form-control" ng-model="chatCtrl.message" placeholder="Type Message" ng-Keypress="chatCtrl.notify();" ng-Mouseleave="chatCtrl.hideNotification();" ng-Blur="chatCtrl.hideNotification();"/>
             <span class="input-group-btn"><button type="button" id="btn_msg" class="btn btn-primary" ng-click="chatCtrl.sendMessage();">SEND</button></span>
         </div>
     </div>

@@ -16,14 +16,17 @@
             vm.message = '';
         }
 
-        $scope.$watchCollection(function(){
-            return UserService.users
-        },function(newVal, oldVal){
-            console.log('in watch');
-            vm.chatlist = UserService.getAllChatUsers(vm.loggedUsername.username);
-            console.log(newVal);
-            console.log(vm.chatlist);
-        })
+        vm.notify = function(){
+
+            SocketService.notify();
+        }
+
+        vm.hideNotification = function(){
+
+            SocketService.hideNotification();
+        }
+
+
 
 
 

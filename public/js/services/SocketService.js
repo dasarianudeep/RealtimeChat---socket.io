@@ -18,16 +18,22 @@
             $("#chat_list").append("<li><h3 style='text-align: center'><b><i> "+data.user+" </i>:"+data.message+"</b></h3></li>");
         });
 
-        //socket.on('update_availability', function(clientids){
-        //
-        //            clientids.forEach(function(clientid){
-        //                UserService.users.find(function(user){
-        //                    console.log('hello');
-        //                    return user.id === clientid;
-        //                }).isAvailable = true;
-        //            });
-        //           // chatusers = UserService.chatusers;
-        //})
+        socket.on('keying_display', function(clientid){
+
+                $("."+clientid).show();
+
+        });
+
+        socket.on('hide_keying_display', function(clientid){
+
+            $("."+clientid).hide();
+        });
+
+        socket.on('client_offline', function(clientid){
+
+            $("#"+clientid).removeClass("label-success").addClass("label-default");
+            $("#"+clientid).text("OFFLINE");
+        })
 
         socket.on('update_availability',function(clientids){
             console.log('hey avail');
@@ -40,7 +46,9 @@
 
         })
         var socketService = {
-            sendMessage : sendMessage
+            sendMessage : sendMessage,
+            notify:notify,
+            hideNotification: hideNotification
 
 
         }
@@ -50,6 +58,16 @@
         function sendMessage(msg){
 
             socket.emit('chat_sent', {user:JSON.parse(sessionStorage.getItem('user')).chatname,message:msg})
+        }
+
+        function notify(){
+
+            socket.emit('notify_keying_clients');
+        }
+
+        function hideNotification(){
+
+            socket.emit('stop_keying_notifications');
         }
 
 
