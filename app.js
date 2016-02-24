@@ -13,8 +13,10 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + '/public/index.html');
 });
 
-io.connection('')
+io.on('connection', function(){
+    console.log('client connected');
+});
 
-app.listen(3000, function(){
-    console.log('Listening to port 3000');
+app.listen(8080, function(){
+    console.log('Listening to port 8080');
 });
