@@ -3,13 +3,29 @@
  */
 (function(){
     angular.module('socketapp')
-        .controller('ChatController', ['$rootScope','UserService',ChatController]);
+        .controller('ChatController', ['$rootScope','$scope','UserService','SocketService',ChatController]);
 
-    function ChatController($rootScope,UserService){
+    function ChatController($rootScope,$scope,UserService, SocketService){
 
         var vm  = this;
-        var loggedUser = JSON.parse(sessionStorage.getItem('user'));
-        vm.chatlist = UserService.getAllChatUsers(loggedUser.username);
+        vm.loggedUsername = JSON.parse(sessionStorage.getItem('user'));
+        vm.chatlist = UserService.getAllChatUsers(vm.loggedUsername.username);
+        vm.sendMessage = function(){
+
+            SocketService.sendMessage(vm.message);
+            vm.message = '';
+        }
+
+        $scope.$watchCollection(function(){
+            return UserService.users
+        },function(newVal, oldVal){
+            console.log('in watch');
+            vm.chatlist = UserService.getAllChatUsers(vm.loggedUsername.username);
+            console.log(newVal);
+            console.log(vm.chatlist);
+        })
+
+
 
     }
 })();

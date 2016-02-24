@@ -7,6 +7,7 @@
 
     function UserService(){
 
+
         var users = [{
             id:10001,
             chatname:'Anudeep Dasari',
@@ -65,6 +66,7 @@
 
 
         var userService = {
+            users : users,
             getAllChatUsers : getAllChatUsers,
             authenticateUser:authenticateUser
         }
@@ -74,8 +76,8 @@
 
         function getAllChatUsers(loggedUser){
 
-            console.log(users);
-            var chatusers = users.filter(function(user){
+           console.log('in user service');
+            var chatusers = userService.users.filter(function(user){
 
                 return user.username !== loggedUser;
             });
@@ -86,7 +88,7 @@
 
         function authenticateUser(username, passwd){
 
-            var loggedUser = users.find(function(user){
+            var loggedUser = userService.users.find(function(user){
 
                 return user.username === username && user.passwd === passwd;
             });

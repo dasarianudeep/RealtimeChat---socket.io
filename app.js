@@ -6,7 +6,8 @@ var express = require('express'),
     httpserver = require('http').Server(app),
     io = require('socket.io')(httpserver);
 
-var websocket_clients = [];
+var websocket_clients = {},
+    clientids = [];
 
 app.use(express.static(__dirname + '/public'));
 app.get('/', function(req, res){
@@ -14,22 +15,30 @@ app.get('/', function(req, res){
 });
 
 io.on('connection', function(socket){
+
     console.log('client connected');
     console.log(socket.id);
 
+
     socket.on('join', function(data){
+        clientids.push(data.user.id);
+        websocket_clients[socket.id] = data.user.id;
         console.log(data);
+        console.log(websocket_clients);
+
+        io.emit('update_availability',clientids);
+
     });
 
     socket.on('chat_sent', function(data){
-
-        console.log(data);
         io.emit('chat_display', data);
-    });
+    })
+
+
 
     socket.on('disconnect', function(){
         console.log('client disconnected');
-    })
+    });
 
 });
 

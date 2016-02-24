@@ -15,8 +15,7 @@
             var authenticatedUser = UserService.authenticateUser(vm.username, vm.passwd);
             if(authenticatedUser)
             {
-                //$rootScope.loggedUsername = authenticatedUser.username;
-                //angular.module('socketapp').value('session_user', authenticatedUser.username);
+
                 sessionStorage.setItem('user', JSON.stringify(authenticatedUser));
                 console.log(JSON.parse(sessionStorage.getItem('user')));
                 $location.path('/chatapp');

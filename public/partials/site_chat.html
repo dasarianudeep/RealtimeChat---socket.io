@@ -1,5 +1,11 @@
 <script src="./js/socket_client.js"></script>
 <div class="col-md-offset-1 col-md-10">
+    <div class="col-md-offset-4 col-md-4">
+        <h2 class="lead">Hey <span ng-bind="chatCtrl.loggedUsername.chatname"></span></h2>
+    </div>
+    <div class="col-md-4 chatname-heading-right">
+
+    </div>
     <div class="col-md-4">
         <ul class="media-list">
             <li class="media" ng-repeat = "user in chatCtrl.chatlist">
@@ -11,10 +17,12 @@
                 </div>
                 <div class="media-body">
                     <h4 class="media-heading"><strong><span ng-bind="user.chatname"></span></strong></h4>
-                    <p ng-switch = "user.isAvailable">
-                        <span ng-switch-when = "true"><span class="label label-success">ONLINE</span></span>
-                        <span ng-switch-when = "false"><span class="label label-default">OFFLINE</span></span>
-                    </p>
+                    <p class="status"><span id={{user.id}} class="label label-default">OFFLINE</span></p>
+                    <p>{{user.isAvailable}}</p>
+                    <!--<p ng-switch = "user.isAvailable">-->
+                        <!--<span ng-switch-when = "true"><span class="label label-success">ONLINE</span></span>-->
+                        <!--<span ng-switch-when = "false"><span class="label label-default">OFFLINE</span></span>-->
+                    <!--</p>-->
 
                 </div>
 
@@ -30,8 +38,8 @@
         </ul>
         <div class="input-group chat-input">
 
-            <input type="text" id="chat_input" class="form-control" placeholder="Type Message"/>
-            <span class="input-group-btn"><button type="button" id="btn_msg" class="btn btn-primary">SEND</button></span>
+            <input type="text" id="chat_input" class="form-control" ng-model="chatCtrl.message" placeholder="Type Message"/>
+            <span class="input-group-btn"><button type="button" id="btn_msg" class="btn btn-primary" ng-click="chatCtrl.sendMessage();">SEND</button></span>
         </div>
     </div>
 </div>
