@@ -2,7 +2,7 @@
  * Created by Anudeep on 2/23/2016.
  */
 (function(){
-    'use strict'
+    'use strict';
 
     var express = require('express'),
         app = express(),
@@ -45,7 +45,7 @@
         socket.on('stop_keying_notifications', function(){
 
             io.emit('hide_keying_display',websocket_clients[socket.id]);
-        })
+        });
 
 
 
@@ -59,14 +59,14 @@
 
             socket.disconnect();
 
-            io.emit('client_offline',websocket_clients[socket.id])
+            io.emit('client_offline',websocket_clients[socket.id]);
             var i = clientids.indexOf(websocket_clients[socket.id]);
             clientids.splice(i,1);
             console.log(clientids);
             delete websocket_clients[socket.id];
             console.log(websocket_clients);
 
-        })
+        });
 
     });
 

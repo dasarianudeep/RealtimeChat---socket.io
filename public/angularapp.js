@@ -2,7 +2,7 @@
  * Created by Anudeep on 2/23/2016.
  */
 (function(){
-    'use strict'
+    'use strict';
     angular.module('socketapp',['ngRoute']);
 
     angular.module('socketapp').config(['$routeProvider', function($routeProvider){
@@ -22,7 +22,7 @@
             })
             .otherwise({
                 redirectTo:'/'
-            })
+            });
     }]);
 
     angular.module('socketapp').run(['$rootScope','$location',function($rootScope,$location){
@@ -35,7 +35,7 @@
                 $location.path('/');
             }
 
-        })
-    }])
+        });
+    }]);
 
 })();

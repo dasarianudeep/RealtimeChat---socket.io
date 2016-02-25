@@ -2,7 +2,7 @@
  * Created by Anudeep on 2/23/2016.
  */
 (function(){
-    'use strict'
+    'use strict';
 
     angular.module('socketapp')
         .controller('ChatController', ['$rootScope','$scope','$location','$window','UserService','SocketService',ChatController]);
@@ -16,17 +16,17 @@
 
             SocketService.sendMessage(vm.message);
             vm.message = '';
-        }
+        };
 
         vm.notify = function(){
 
             SocketService.notify();
-        }
+        };
 
         vm.hideNotification = function(){
 
             SocketService.hideNotification();
-        }
+        };
 
         vm.logOut = function(){
 
@@ -35,7 +35,7 @@
             $window.location.reload();
             $location.path('/');
 
-        }
+        };
 
 
 
