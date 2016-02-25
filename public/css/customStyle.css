@@ -33,6 +33,7 @@
 
 .chat-list{
     height:75%;
+    overflow-y: auto;
 }
 .chatname-heading-right{
     height:96px;

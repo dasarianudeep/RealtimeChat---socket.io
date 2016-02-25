@@ -2,6 +2,7 @@
  * Created by Anudeep on 2/23/2016.
  */
 (function(){
+    'use strict'
     angular.module('socketapp')
         .controller('LoginController', ['$rootScope','$location','UserService',LoginController]);
 

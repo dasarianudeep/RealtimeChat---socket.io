@@ -2,15 +2,15 @@
  * Created by Anudeep on 2/24/2016.
  */
 (function(){
-
+    'use strict'
     angular.module('socketapp')
         .factory('SocketService', ['UserService',SocketService]);
 
 
     function SocketService(UserService){
 
-        var socket = io(),
-            chatusers = [];
+        var socket = io();
+
         socket.emit('join', {user : JSON.parse(sessionStorage.getItem('user'))});
 
         socket.on('chat_display', function(data){
@@ -36,7 +36,6 @@
         })
 
         socket.on('update_availability',function(clientids){
-            console.log('hey avail');
 
             clientids.forEach(function(clientid){
                 $("#"+clientid).removeClass('label-default').addClass('label-success');
@@ -48,9 +47,8 @@
         var socketService = {
             sendMessage : sendMessage,
             notify:notify,
-            hideNotification: hideNotification
-
-
+            hideNotification: hideNotification,
+            logOutClient:logOutClient
         }
 
         return socketService;
@@ -70,8 +68,11 @@
             socket.emit('stop_keying_notifications');
         }
 
+        function logOutClient(){
 
+            socket.emit('logout_client');
 
+        }
 
     }
 
