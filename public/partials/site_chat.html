@@ -6,6 +6,9 @@
     </div>
 </div>
 <div class="row">
+    <audio id="msg_notification" width="10" height="0">
+        <source src="../audio/message-notification.wav" type="audio/wav">
+    </audio>
     <div class="col-md-offset-1 col-md-10">
         <div class="col-md-offset-4 col-md-4">
             <h2 class="lead">Hey <span ng-bind="chatCtrl.loggedUsername.chatname"></span></h2>
@@ -39,7 +42,7 @@
             </ul>
             <div class="input-group chat-input">
 
-                <input type="text" id="chat_input" class="form-control" ng-model="chatCtrl.message" placeholder="Type Message" ng-Keypress="chatCtrl.notify();"
+                <input type="text" id="chat_input" class="form-control" ng-model="chatCtrl.message" placeholder="Type Message" ng-Keypress="chatCtrl.notify($event);"
                 ng-Mouseleave="chatCtrl.hideNotification();" ng-Blur="chatCtrl.hideNotification();" />
                 <span class="input-group-btn"><button type="button" id="btn_msg" class="btn btn-primary" ng-click="chatCtrl.sendMessage();">SEND</button></span>
             </div>

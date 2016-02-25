@@ -13,13 +13,20 @@
         vm.loggedUsername = JSON.parse(sessionStorage.getItem('user'));
         vm.chatlist = UserService.getAllChatUsers(vm.loggedUsername.username);
         vm.sendMessage = function () {
-
+            
+            $('#msg_notification')[0].play();
             SocketService.sendMessage(vm.message);
             vm.message = '';
         };
 
-        vm.notify = function () {
-
+        vm.notify = function (event) {
+            if (event.which == 13){
+                $('#msg_notification')[0].play();
+                SocketService.sendMessage(vm.message);
+                vm.message = '';
+                
+                return;
+            }
             SocketService.notify();
         };
 
