@@ -2,7 +2,7 @@
  * Created by Anudeep on 2/23/2016.
  */
 (function(){
-    'use strict'
+    'use strict';
 
     angular.module('socketapp')
         .factory('UserService', UserService);
@@ -71,7 +71,7 @@
             users : users,
             getAllChatUsers : getAllChatUsers,
             authenticateUser:authenticateUser
-        }
+        };
 
         return userService;
         /////////////////// Implementation Here ///////////////
@@ -100,11 +100,6 @@
             }
             return loggedUser;
         }
-
-
-
-
-
 
     }
 
